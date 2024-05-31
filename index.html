@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no"
+		/>
+		<meta name="description" content="" />
+		<meta name="author" content="" />
+		<title>KBVision Vietnam</title>
+		<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+		<link
+			href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+			rel="stylesheet"
+			type="text/css"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+			rel="stylesheet"
+			type="text/css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.css"
+		/>
+		<link href="css/styles.css" rel="stylesheet" />
+
+		<script
+			src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+			crossorigin="anonymous"
+		></script>
+		<script src="https://cdn.rawgit.com/Keyang/node-csvtojson/d41f44aa/browser/csvtojson.min.js"></script>
+	</head>
+	<body id="page-top">
+		<nav
+			class="navbar navbar-expand-lg navbar-dark fixed-top"
+			id="mainNav"
+		>
+			<div class="container">
+				<a class="navbar-brand" href="index.html"
+					><img
+						src="assets/img/logos/KBVISION_2020_300.png"
+						alt="..."
+				/></a>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbarResponsive"
+					aria-controls="navbarResponsive"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					Menu
+					<i class="fas fa-bars ms-1"></i>
+				</button>
+				<div
+					class="collapse navbar-collapse"
+					id="navbarResponsive"
+				>
+					<ul
+						class="navbar-nav text-uppercase ms-auto py-4 py-lg-0"
+					>
+						<li class="nav-item">
+							<a
+								class="nav-link"
+								href="#new-products"
+								>Sản phẩm mới</a
+							>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#camera"
+								>Camera</a
+							>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#dvr"
+								>Đầu ghi hình</a
+							>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#contact"
+								>Liên hệ</a
+							>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<header class="masthead"></header>
+
+		<section class="page-section" id="new-products">
+			<div class="container">
+				<div class="text-center">
+					<h2 class="section-heading text-uppercase">
+						Sản phẩm mới
+					</h2>
+				</div>
+				<div class="row text-center">
+					<script>
+						const grid = document.querySelector(".row");
+						const url =
+							"https://docs.google.com/spreadsheets/d/11PQWzrmaBznp0IrU9TEGDd_X9B4m5W9cCuaMu873EhM/export?format=csv";
+
+						fetch(url)
+							.then((result) => result.text())
+							.then(function (csvtext) {
+								return csv().fromString(
+									csvtext
+								);
+							})
+							.then(function (csv) {
+								csv.forEach(function (row) {
+									const productHTML =
+										"<div class='col-md-4'>" +
+										"<img class='new-products__img' src='" +
+										row.HinhAnhSanPham +
+										"'>" +
+										"<h4>" +
+										row.TenSanPham +
+										"</h4>" +
+										"<p class='text-muted'>" +
+										row.GiaSanPham +
+										"</p>" +
+										"</div>";
+									grid.innerHTML +=
+										productHTML;
+								});
+							});
+					</script>
+				</div>
+			</div>
+		</section>
+
+		<section class="page-section bg-light" id="camera">
+			<div class="container">
+				<div class="text-center">
+					<h2 class="section-heading text-uppercase">
+						Camera
+					</h2>
+				</div>
+				<div class="row row-camera text-center">
+					<script>
+						const gridCamera =
+							document.querySelector(".row-camera");
+						const urlCamera =
+							"https://docs.google.com/spreadsheets/d/12Rbacqenah5-hxTG85K94HeHfP9BW_xw4AIjuLp0uTQ/export?format=csv";
+
+						fetch(urlCamera)
+							.then((result) => result.text())
+							.then(function (csvtext) {
+								return csv().fromString(
+									csvtext
+								);
+							})
+							.then(function (csv) {
+								csv.forEach(function (row) {
+									const cameraHTML =
+										"<div class='col-lg-4 col-sm-6 mb-4'>" +
+										"<div class='portfolio-item'>" +
+										"<img class='new-products__img' src='" +
+										row.HinhAnhSanPham +
+										"'>" +
+										"<h4>" +
+										row.TenSanPham +
+										"</h4>" +
+										"<p class='text-muted'>" +
+										row.GiaSanPham +
+										"</p>" +
+										"</div>";
+									("</div>");
+									gridCamera.innerHTML +=
+										cameraHTML;
+								});
+							});
+					</script>
+				</div>
+			</div>
+		</section>
+
+		<section class="page-section bg-light" id="dvr">
+			<div class="container">
+				<div class="text-center">
+					<h2 class="section-heading text-uppercase">
+						Đầu ghi hình
+					</h2>
+				</div>
+				<div class="row row-dvr text-center">
+					<script>
+						const gridDVR =
+							document.querySelector(".row-dvr");
+						const urlDVR =
+							"https://docs.google.com/spreadsheets/d/1QU4vT33_PdcAjj5enrtWp-Z-ietvXgcwPujwRILC_Dk/export?format=csv";
+
+						fetch(urlDVR)
+							.then((result) => result.text())
+							.then(function (csvtext) {
+								return csv().fromString(
+									csvtext
+								);
+							})
+							.then(function (csv) {
+								csv.forEach(function (row) {
+									const dvrHTML =
+										"<div class='col-lg-4 col-sm-6 mb-4'>" +
+										"<div class='portfolio-item'>" +
+										"<img class='new-products__img' src='" +
+										row.HinhAnhSanPham +
+										"'>" +
+										"<h4>" +
+										row.TenSanPham +
+										"</h4>" +
+										"<p class='text-muted'>" +
+										row.GiaSanPham +
+										"</p>" +
+										"</div>";
+									("</div>");
+									gridDVR.innerHTML +=
+										dvrHTML;
+								});
+							});
+					</script>
+				</div>
+			</div>
+		</section>
+
+		<div class="banner">
+			<img src="./assets/img/banner.jpg" alt="" />
+		</div>
+
+		<div class="py-5">
+			<div class="container">
+				<div class="row justify-content-center align-items-center">
+					<div class="col-md-3 col-sm-6 my-3">
+						<a href="#!"
+							><img
+								class="img-fluid img-brand d-block mx-auto"
+								src="assets/img/logos/microsoft.svg"
+								alt="..."
+								aria-label="Microsoft Logo"
+						/></a>
+					</div>
+					<div class="col-md-3 col-sm-6 my-3">
+						<a href="#!"
+							><img
+								class="img-fluid img-brand d-block mx-auto"
+								src="assets/img/logos/google.svg"
+								alt="..."
+								aria-label="Google Logo"
+						/></a>
+					</div>
+					<div class="col-md-3 col-sm-6 my-3">
+						<a href="#!"
+							><img
+								class="img-fluid img-brand d-block mx-auto"
+								src="assets/img/logos/facebook.svg"
+								alt="..."
+								aria-label="Facebook Logo"
+						/></a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<section class="page-section" id="contact">
+			<div class="container">
+				<div class="text-center">
+					<h2 class="section-heading text-uppercase">
+						Liên hệ chúng tôi
+					</h2>
+				</div>
+
+				<form
+					name="google-sheet"
+					id="contactForm"
+					data-sb-form-api-token="API_TOKEN"
+				>
+					<div class="row align-items-stretch mb-5">
+						<div class="col-md-6">
+							<div class="form-group">
+								<input
+									class="form-control"
+									name="TenKhachHang"
+									id="name"
+									type="text"
+									placeholder="Họ và tên *"
+									data-sb-validations="required"
+								/>
+								<div
+									class="invalid-feedback"
+									data-sb-feedback="name:required"
+								>
+									Vui lòng nhập họ tên.
+								</div>
+							</div>
+							<div class="form-group">
+								<input
+									class="form-control"
+									name="Email"
+									id="email"
+									type="email"
+									placeholder="Địa chỉ Email *"
+									data-sb-validations="required,email"
+								/>
+								<div
+									class="invalid-feedback"
+									data-sb-feedback="email:required"
+								>
+									Vui lòng nhập Email.
+								</div>
+								<div
+									class="invalid-feedback"
+									data-sb-feedback="email:email"
+								>
+									Vui lòng nhập Email.
+								</div>
+							</div>
+							<div class="form-group mb-md-0">
+								<input
+									class="form-control"
+									name="SoDienThoai"
+									id="phone"
+									type="tel"
+									placeholder="Số điện thoại *"
+									data-sb-validations="required"
+								/>
+								<div
+									class="invalid-feedback"
+									data-sb-feedback="phone:required"
+								>
+									Vui lòng nhập số điện
+									thoại.
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div
+								class="form-group form-group-textarea mb-md-0"
+							>
+								<textarea
+									class="form-control"
+									name="NoiDung"
+									id="message"
+									placeholder="Nội dung của bạn *"
+									data-sb-validations="required"
+								></textarea>
+								<div
+									class="invalid-feedback"
+									data-sb-feedback="message:required"
+								>
+									Vui lòng nhập nội dung.
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="d-none" id="submitErrorMessage">
+						<div class="text-center text-danger mb-3">
+							Gửi thất bại!
+						</div>
+					</div>
+					<div class="text-center">
+						<button
+							class="btn btn-primary btn-xl text-uppercase"
+							id="submitButton"
+							type="submit"
+                            style="width: 200px;"
+						>
+							Gửi
+						</button>
+					</div>
+				</form>
+			</div>
+		</section>
+
+		<footer class="footer py-4">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-lg-4 text-lg-start">
+						Copyright &copy; KBVision Việt Nam 2024
+					</div>
+					<div class="col-lg-4 my-3 my-lg-0">
+						<a
+							class="btn btn-dark btn-social mx-2"
+							href="#!"
+							aria-label="Twitter"
+							><i class="fab fa-twitter"></i
+						></a>
+						<a
+							class="btn btn-dark btn-social mx-2"
+							href="#!"
+							aria-label="Facebook"
+							><i class="fab fa-facebook-f"></i
+						></a>
+						<a
+							class="btn btn-dark btn-social mx-2"
+							href="#!"
+							aria-label="LinkedIn"
+							><i class="fab fa-linkedin-in"></i
+						></a>
+					</div>
+					<div class="col-lg-4 text-lg-end">
+						<a
+							class="link-dark text-decoration-none me-3"
+							href="#!"
+							>Chính sách bảo hành</a
+						>
+						<a
+							class="link-dark text-decoration-none"
+							href="#!"
+							>Hỗ trợ kỹ thuật</a
+						>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="js/scripts.js"></script>
+		<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.js"></script>
+		<script>
+			const scriptURL =
+				"https://script.google.com/macros/s/AKfycbwWWgfWPPxcMG1JCLeixRDYziEf6E0xoqt9emrNZBqWHJX9Qnc7dZxG-dDzJ6Q1XOgJGQ/exec";
+			const form = document.forms["google-sheet"];
+
+			form.addEventListener("submit", (e) => {
+				e.preventDefault();
+				fetch(scriptURL, {
+					method: "POST",
+					body: new FormData(form),
+				})
+					.then((response) =>
+						Swal.fire({
+							position: "center",
+							icon: "success",
+							title: "Thông tin của bạn đã được gửi!",
+							showConfirmButton: false,
+							timer: 1500,
+						}).then(function () {
+							location.reload();
+						})
+					)
+					.catch((error) =>
+						console.error("Error!", error.message)
+					);
+			});
+		</script>
+	</body>
+</html>
